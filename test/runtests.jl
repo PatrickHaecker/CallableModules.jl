@@ -10,19 +10,19 @@ end
 
 module ModLong
     using CallableModules
-    @callable_module function main(args...; kwargs...)
+    @module_main function main(args...; kwargs...)
         (args, kwargs)
     end
 end
 
 module ModShort
     using CallableModules
-    @callable_module double(x) = 2x
+    @module_main double(x) = 2x
 end
 
 module ModNoArgs
     using CallableModules
-    @callable_module function greet()
+    @module_main function greet()
         "hello"
     end
 end
@@ -70,6 +70,6 @@ end
     end
 
     @testset "macro rejects non-function input" begin
-        @test_throws LoadError @eval @callable_module begin end
+        @test_throws LoadError @eval @module_main begin end
     end
 end

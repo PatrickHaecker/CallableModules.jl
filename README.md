@@ -32,7 +32,7 @@ Pkg.add("CallableModules")
 
 ## Usage
 
-### With `@callable_module` (recommended)
+### With `@module_main` (recommended)
 
 Annotate the function that should be invoked when the module is called:
 
@@ -40,7 +40,7 @@ Annotate the function that should be invoked when the module is called:
 module MyApp
 using CallableModules
 
-@callable_module function main(args...; kwargs...)
+@module_main function main(args...; kwargs...)
     println("Called with args=$args, kwargs=$kwargs")
 end
 
@@ -57,7 +57,7 @@ Called with args=(1, 2), kwargs=Base.Pairs(:verbose => true)
 The macro works with any function name, not just `main`:
 
 ```julia
-@callable_module run(args...; kwargs...) = do_stuff(args...; kwargs...)
+@module_main run(args...; kwargs...) = do_stuff(args...; kwargs...)
 ```
 
 ### Manual definition

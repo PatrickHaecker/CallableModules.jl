@@ -1,13 +1,13 @@
 module CallableModules
 
-export @callable_module
+export @module_main
 
 # This is type piracy, but is fully generic. If every package which wants to have its
 # module callable uses this package, no problems with multiple definitions should occur.
 (x::Module)(varargs...; kwargs...) = Val(x)(varargs...; kwargs...)
 
 """
-    @callable_module funcdef
+    @module_main funcdef
 
 Make the enclosing module callable by forwarding `MyModule(args...; kwargs...)` to the
 annotated function.
@@ -17,7 +17,7 @@ annotated function.
 ```julia
 module MyApp
     using CallableModules
-    @callable_module function main(args...; kwargs...)
+    @module_main function main(args...; kwargs...)
         println("args=\$args, kwargs=\$kwargs")
     end
 end
@@ -29,9 +29,9 @@ MyApp(1, 2; verbose=true)
 Both long-form (`function f(...) ... end`) and short-form (`f(x) = ...`) definitions are
 supported.
 """
-macro callable_module(funcdef)
+macro module_main(funcdef)
     # Extract the function name from the definition
-    funcdef.head ∈ (:function, :(=)) || error("@callable_module must be applied to a function definition")
+    funcdef.head ∈ (:function, :(=)) || error("@module_main must be applied to a function definition")
     call = funcdef.args[1]
     fname = call isa Symbol ? call : call.args[1]
 

@@ -1,7 +1,7 @@
 name = "CallableModules"
 uuid = "bc93ac54-acd5-5963-b2b8-c9289e02c1c6"
 authors = ["Patrick Häcker <patrick.haecker@de.bosch.com>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 
