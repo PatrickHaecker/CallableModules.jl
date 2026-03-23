@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier
+Authors: Patrick Häcker <patrick.haecker@de.bosch.com>
+JuliaMinVersion: '1.10'
+License: MIT
+LicenseCopyrightHolders: Patrick Häcker
+PackageName: CallableModules
+PackageOwner: PatrickHaecker
+PackageUUID: bc93ac54-acd5-5963-b2b8-c9289e02c1c6
+StrategyConfirmIncluded: false
+StrategyLevel: 1
+StrategyReviewExcluded: false
+_src_path: /home/hp74lr/.julia/packages/BestieTemplate/fOzc4
