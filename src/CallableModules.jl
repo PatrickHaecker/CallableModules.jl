@@ -2,9 +2,11 @@ module CallableModules
 
 export @module_main
 
+struct V end
+
 # This is type piracy, but is fully generic. If every package which wants to have its
 # module callable uses this package, no problems with multiple definitions should occur.
-(x::Module)(varargs...; kwargs...) = Val(x)(varargs...; kwargs...)
+(x::Module)(varargs...; kwargs...) = V(x)(varargs...; kwargs...)
 
 """
     @module_main funcdef
@@ -37,7 +39,7 @@ macro module_main(funcdef)
 
     esc(quote
         $funcdef
-        (::Val{$__module__})(varargs...; kwargs...) = $fname(varargs...; kwargs...)
+        (::V{$__module__})(varargs...; kwargs...) = $fname(varargs...; kwargs...)
     end)
 end
 
